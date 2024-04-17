@@ -34,7 +34,13 @@ public class SubscribeController(ApiContext context) : ControllerBase
     {
         if (ModelState.IsValid)
         {
+            var subscriberEntity = await _context.Subscribers.FirstOrDefaultAsync(x => x.Email == email);
+            if (subscriberEntity == null)
+                return NotFound();
 
+            _context.Remove(subscriberEntity);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
 
