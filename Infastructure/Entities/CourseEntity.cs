@@ -1,7 +1,11 @@
-﻿namespace Infastructure.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Infastructure.Entities;
 
 public class CourseEntity
 {
+    [Key]
+    public int Id { get; set; }
     public bool IsBestSeller { get; set; }
     public string Image { get; set; } = null!;
     public string Title { get; set; } = null!;
